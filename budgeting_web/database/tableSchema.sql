@@ -3,27 +3,24 @@ CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
+    password VARCHAR(100) NOT NULL,
     date_joined TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 -- Income Table: track income sources for financial analysis
-CREATE TABLE Income(
+CREATE TABLE Income (
     income_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     income_source VARCHAR(100) NOT NULL,
-    income_amount DECIMAL(10,2) NOT NULL,
+    income_amount DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
-
 -- Categories Table: group categories into food, electric, transportation etc
 CREATE TABLE Categories (
-    category_id INT PRIMARY KEY AUTO_INCREMENT,
-    category_name VARCHAR(100) NOT NULL
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(50) NOT NULL UNIQUE
 );
-
 -- SavingsGoals Table: tracks user's saving goals
-CREATE TABLE SavingsGoals (
+CREATE TABLE SavingGoals (
     goal_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     goal_name VARCHAR(100) NOT NULL,
@@ -33,10 +30,9 @@ CREATE TABLE SavingsGoals (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (category_id) REFERENCES Categories(category_id)
 );
-
 -- Transactions Table: tracks user's spending activity
 CREATE TABLE Transactions (
-    transaction_id INT PRIMARY KEY AUTO_INCREMENT,
+    transaction_id INT PRIMARY KEY auto_increment,
     user_id INT,
     transaction_amount DECIMAL(10, 2) NOT NULL,
     category_id INT,
@@ -45,7 +41,6 @@ CREATE TABLE Transactions (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (category_id) REFERENCES Categories(category_id)
 );
-
 -- Bills Table: stores expenses like rent, utilities, etc.
 CREATE TABLE Bills (
     bill_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -54,17 +49,17 @@ CREATE TABLE Bills (
     bill_amount DECIMAL(10, 2) NOT NULL,
     due_date DATE NOT NULL,
     payment_date DATE,
-    paid_status BOOLEAN DEFAULT FALSE,
+    payment_status BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
-
 -- Report Table: generates monthly report to let user know about purchases and budget status
 CREATE TABLE Report (
     report_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
-    report_month DATE NOT NULL,
-    total_income DECIMAL(10,2) NOT NULL DEFAULT 0.00,
-    total_expenses DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    report_month CHAR(100) NOT NULL,
+    total_income DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    total_expenses DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
     budget_status ENUM('under budget', 'on budget', 'over budget') NOT NULL,
+    UNIQUE(user_id, report_month),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
