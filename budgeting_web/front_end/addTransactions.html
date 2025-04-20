@@ -53,16 +53,24 @@
         <h4 class="mb-0">Add New Transaction</h4>
       </div>
       <div class="card-body">
-        <form action="../back_end/payments/transactions.php" method="POST">
+        <form action="../back_end/transactions/add_transactions.php" method="POST">
             <!-- Bill Name Dropdown -->
             <div class="mb-3">
                 <label class="form-label required">Transaction Type</label>
                 <select class="form-select" name="category_id" required>
-                    <option value="">Select Category</option>
-                    <option value="1">General</option>
-                    <option value="2">Shopping</option>
-                    <option value="3">Dining</option>
-                  </select>                  
+                  <option value="">Select Category</option>
+                  <option value="1">Retail</option>
+                  <option value="2">Grocery</option>
+                  <option value="3">Tech & Electronics</option>
+                  <option value="4">Pharmacy</option>
+                  <option value="5">Books & Supplies</option>
+                  <option value="6">Clothing & Accessories</option>
+                  <option value="7">Home & Garden</option>
+                  <option value="8">Beauty & Personal Care</option>
+                  <option value="9">Automotive</option>
+                  <option value="10">Pet Supplies</option>
+                </select>
+                                 
             </div>
           
           

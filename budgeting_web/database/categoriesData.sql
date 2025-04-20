@@ -1,11 +1,12 @@
-INSERT INTO Categories (category_id, category_name)
-VALUES (1, 'Home Improvement'),
-    (2, 'Clothing'),
-    (3, 'Food & Dining'),
-    (4, 'Transportation'),
-    (5, 'Retail'),
-    (6, 'Electronics'),
-    (7, 'Fashion'),
-    (8, 'Office Supplies'),
-    (9, 'Entertainment'),
-    (10, 'Department Stores');
+-- Insert category records (category_id will auto-increment from 1)
+INSERT INTO `Categories` (category_name)
+VALUES ('Retail'),
+    ('Grocery'),
+    ('Tech & Electronics'),
+    ('Pharmacy'),
+    ('Books & Supplies'),
+    ('Clothing & Accessories'),
+    ('Home & Garden'),
+    ('Beauty & Personal Care'),
+    ('Automotive'),
+    ('Pet Supplies');

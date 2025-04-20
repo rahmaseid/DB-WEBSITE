@@ -26,7 +26,7 @@ WHERE transaction_location IN ('Best Buy', 'GameStop');
 UPDATE Transactions
 SET category_id = 4
 WHERE transaction_location IN ('Walgreens', 'CVS');
--- Category 5: Books & Office (Barnes & Noble, Staples, Office Depot)
+-- Category 5: Books & Supplies (Barnes & Noble, Staples, Office Depot)
 UPDATE Transactions
 SET category_id = 5
 WHERE transaction_location IN ('Barnes & Noble', 'Staples', 'Office Depot');
